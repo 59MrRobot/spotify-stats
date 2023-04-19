@@ -1,0 +1,25 @@
+.menu {
+  position: absolute;
+  width: 100%;
+  padding: 16px;
+  background-color: #fff;
+  border-bottom: 1px solid grey;
+
+  &__list {
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    list-style: none;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: contents;
+}
