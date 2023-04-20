@@ -1,0 +1,32 @@
+.top-stats {
+  height: 100%;
+
+  &__wrapper {
+    height: 100%;
+    padding: 16px;
+  }
+
+  &__title {
+    letter-spacing: 8px;
+    text-align: center;
+  }
+
+  &__filter-list {
+    list-style: none;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    border-bottom: 1px solid grey;
+  }
+
+  &__filter-item {
+    padding: 8px;
+  }
+
+  &__filter-link {
+    text-decoration: none;
+    color: #000;
+  }
+}

@@ -1,6 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { login } from '../../redux/apiCalls';
+import { updateShowMenu } from '../../redux/settingRedux';
+import { resetTopArtists } from '../../redux/topArtistRedux';
 import { logout } from '../../redux/userRedux';
 import './Menu.scss';
 
@@ -17,8 +20,16 @@ export const Menu: React.FC<Props> = React.memo(
       <div className={`menu ${visibility ? 'show' : 'hide'}`}>
         <div className="menu__wrapper">
           <ul className="menu__list">
+            <li className="menu__item">
+              <Link
+                to="/top/artists"
+                style={{ textDecoration: "none", color: "unset" }}
+                onClick={() => dispatch(updateShowMenu(false))}
+              >
+                Top Artists
+              </Link>
+            </li>
             <li className="menu__item">Top Tracks</li>
-            <li className="menu__item">Top Artists</li>
             <li className="menu__item">
               {!user
                 ? (
@@ -35,6 +46,8 @@ export const Menu: React.FC<Props> = React.memo(
                     onClick={() => {
                       dispatch(logout());
                       window.localStorage.removeItem("token");
+                      dispatch(resetTopArtists());
+                      dispatch(updateShowMenu(false));
                     }}
                   >
                     Logout

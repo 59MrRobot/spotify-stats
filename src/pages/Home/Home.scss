@@ -1,5 +1,24 @@
 .home {
+  height: 100%;
+  padding: 0 16px;
+
   &__wrapper {
-    
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
   }
 }

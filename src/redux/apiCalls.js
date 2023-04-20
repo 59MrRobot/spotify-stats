@@ -1,4 +1,5 @@
 import { userRequest } from "../requestMethods";
+import { getTopArtistFailure, getTopArtistSuccess, startTopArtistProcess } from "./topArtistRedux";
 import {
   startUserProcess,
   loginFailure,
@@ -7,7 +8,9 @@ import {
 
 //USERS
 export const login = () => {
-  const link = `${process.env.REACT_APP_AUTH_ENDPOINT}?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=${process.env.REACT_APP_RESPONSE_TYPE}`;
+  const scope = 'user-top-read';
+
+  const link = `${process.env.REACT_APP_AUTH_ENDPOINT}?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=${scope}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=${process.env.REACT_APP_RESPONSE_TYPE}`;
 
   return link;
 }
@@ -21,5 +24,17 @@ export const getUser = async (dispatch) => {
     dispatch(loginSuccess(response.data));
   } catch (error) {
     dispatch(loginFailure());
+  }
+}
+
+export const getTopArtists = async (dispatch, params) => {
+  dispatch(startTopArtistProcess());
+
+  try {
+    const response = await userRequest.get(`/me/top/artists${params}`);
+
+    dispatch(getTopArtistSuccess(response.data));
+  } catch (error) {
+    dispatch(getTopArtistFailure());
   }
 }

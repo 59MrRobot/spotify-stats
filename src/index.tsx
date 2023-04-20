@@ -10,12 +10,24 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { Error } from './pages/Error';
+import { Home } from './pages/Home';
+import { TopStats } from './pages/TopStats';
 
 const router = createHashRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <Error />
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: "/top/artists",
+        element: <TopStats />
+      },
+    ]
   },
 ]);
 

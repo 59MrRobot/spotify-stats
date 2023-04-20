@@ -1,5 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from './userRedux';
+import settingReducer from './settingRedux';
+import topArtistReducer from './topArtistRedux';
 import {
   persistStore,
   persistReducer,
@@ -9,8 +11,8 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
   key: 'root',
@@ -20,6 +22,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  setting: settingReducer,
+  topArtists: topArtistReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

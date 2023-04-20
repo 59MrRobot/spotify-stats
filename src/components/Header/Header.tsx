@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Header.scss';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu } from '../Menu';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateShowMenu } from '../../redux/settingRedux';
 
 export const Header: React.FC = React.memo(
   () => {
     const isScreenSizeMobile = window.matchMedia("(max-width: 480px)").matches;
-    const [showMenu, setShowMenu] = useState(false);
+    const showMenu = useSelector((state: State) => state.setting.showMenu);
+    const dispatch = useDispatch();
 
     return (
       <header className="header">
@@ -24,7 +27,7 @@ export const Header: React.FC = React.memo(
           {isScreenSizeMobile && (
             <button
               className="header__menu"
-              onClick={() => setShowMenu(prev => !prev)}
+              onClick={() => dispatch(updateShowMenu(!showMenu))}
             >
               <MenuIcon />
             </button>

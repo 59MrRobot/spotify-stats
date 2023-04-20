@@ -3,17 +3,17 @@ import { createSlice } from '@reduxjs/toolkit';
 const settingSlice = createSlice({
   name: "setting",
   initialState: {
-    showUpdate: false,
+    showMenu: false,
   },
   reducers: {
-    updateShowUpdate: (state, action) => {
-      state.showUpdate = action.payload ;
-    }
+    updateShowMenu: (state, action) => {
+      state.showMenu = action.payload ;
+    },
   }
 });
 
 export const {
-  updateShowUpdate,
+  updateShowMenu,
 } = settingSlice.actions;
 
 export default settingSlice.reducer;

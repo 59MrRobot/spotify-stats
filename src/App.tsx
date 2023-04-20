@@ -45,25 +45,9 @@ const App: React.FC = () => {
       <div className="app__wrapper">
         <Header />
 
-        {!user ? <Login /> : <Home />}
+        {!user ? <Login /> : <Outlet />}
 
-        <Outlet />
-        {/* {token
-          ? (
-            <form onSubmit={searchArtists}>
-              <input type="text" onChange={(event) => setSearch(event.target.value)} />
-
-              <input
-                type="submit"
-                value="Search"
-                
-              />
-            </form>
-          )
-          : (<p>Please login</p>)
-        }
-
-        {artists.map((artist: any) => (
+        {/* {artists.map((artist: any) => (
           <div key={artist.id}>
             {artist.images.length
               ? (<img src={artist.images[0].url} alt="artist icon"/>)
