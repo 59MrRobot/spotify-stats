@@ -1,35 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 import './styles/button.scss';
 import './styles/logo.scss';
 // import axios from 'axios';
-import { useSelector } from 'react-redux/es/exports';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { Login } from './pages/Login';
 import { Outlet } from 'react-router-dom'
 import { Home } from './pages/Home';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { getUser } from './redux/apiCalls';
 
 
 const App: React.FC = () => {
-  const user = useSelector((state: any) => state.user.currentUser);
-  // const [token, setToken] = useState("");
+  const user: User = useSelector((state: any) => state.user.currentUser);
+  const dispatch = useDispatch();
+
 
   // const [search, setSearch] = useState("");
   // const [artists, setArtists] = useState<any>([]);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-
-    if (!token && hash) {
-      token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token"))!.split("=")[1];
-
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
-    }
-
-    // setToken(token!);
+    getUser(dispatch);
   }, []);
 
   // const searchArtists = async (event: React.FormEvent<HTMLFormElement>) => {

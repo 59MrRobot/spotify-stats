@@ -3,25 +3,19 @@ import { createRoot } from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { Error } from './pages/Error';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "http://localhost:3000",
-    element: <App />,
-  },
-  {
-    path: "/#",
-    element: <App />,
+    errorElement: <Error />
   },
 ]);
 
