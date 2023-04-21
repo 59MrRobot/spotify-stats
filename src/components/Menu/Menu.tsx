@@ -30,7 +30,15 @@ export const Menu: React.FC<Props> = React.memo(
                 Top Artists
               </Link>
             </li>
-            <li className="menu__item">Top Tracks</li>
+            <li className="menu__item">
+              <Link
+                to="/top/tracks"
+                style={{ textDecoration: "none", color: "unset" }}
+                onClick={() => dispatch(updateShowMenu(false))}
+              >
+                Top Tracks
+              </Link>
+            </li>
             <li className="menu__item">
               {!user
                 ? (

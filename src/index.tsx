@@ -27,6 +27,10 @@ const router = createHashRouter([
         path: "/top/artists",
         element: <TopStats />
       },
+      {
+        path: "/top/tracks",
+        element: <TopStats />
+      },
     ]
   },
 ]);

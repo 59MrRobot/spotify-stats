@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from './userRedux';
 import settingReducer from './settingRedux';
 import topArtistReducer from './topArtistRedux';
+import topTrackReducer from './topTrackRedux';
 import {
   persistStore,
   persistReducer,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   setting: settingReducer,
   topArtists: topArtistReducer,
+  topTracks: topTrackReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

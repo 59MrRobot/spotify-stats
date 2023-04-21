@@ -1,5 +1,14 @@
 import { userRequest } from "../requestMethods";
-import { getTopArtistFailure, getTopArtistSuccess, startTopArtistProcess } from "./topArtistRedux";
+import {
+  getTopArtistFailure,
+  getTopArtistSuccess,
+  startTopArtistProcess
+} from "./topArtistRedux";
+import {
+  getTopTracksFailure,
+  getTopTracksSuccess,
+  startTopTracksProcess
+} from "./topTrackRedux";
 import {
   startUserProcess,
   loginFailure,
@@ -36,5 +45,17 @@ export const getTopArtists = async (dispatch, timePeriod) => {
     dispatch(getTopArtistSuccess(response.data));
   } catch (error) {
     dispatch(getTopArtistFailure());
+  }
+}
+
+export const getTopTracks = async (dispatch, timePeriod) => {
+  dispatch(startTopTracksProcess());
+
+  try {
+    const response = await userRequest.get(`/me/top/tracks?time_range=${timePeriod}&limit=50`);
+
+    dispatch(getTopTracksSuccess(response.data));
+  } catch (error) {
+    dispatch(getTopTracksFailure());
   }
 }

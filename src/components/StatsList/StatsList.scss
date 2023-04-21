@@ -8,5 +8,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
+
+    &--track {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

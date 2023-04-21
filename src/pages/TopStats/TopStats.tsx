@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { StatsList } from '../../components/StatsList';
-import { getTopArtists } from '../../redux/apiCalls';
+import { getTopArtists, getTopTracks } from '../../redux/apiCalls';
 import './TopStats.scss';
 import cn from 'classnames';
 
@@ -10,6 +10,7 @@ export const TopStats: React.FC = React.memo(
   () => {
     const location = useLocation();
     const topArtists = useSelector((state: State) => state.topArtists.topArtists);
+    const topTracks = useSelector((state: State) => state.topTracks.topTracks);
     const dispatch = useDispatch();
     const [type, setType] = useState("");
     const [timePeriod, setTimePeriod] = useState("short_term");
@@ -22,8 +23,14 @@ export const TopStats: React.FC = React.memo(
     }, [location.pathname]);
 
     useEffect(() => {
-      getTopArtists(dispatch, timePeriod);
-    }, [dispatch, timePeriod]);
+      if (type === 'artists') {
+        getTopArtists(dispatch, timePeriod);
+      }
+
+      if (type === 'tracks') {
+        getTopTracks(dispatch, timePeriod);
+      }
+    }, [dispatch, timePeriod, type]);
 
     const handleTimePeriod = (period: string) => {
       setTimePeriod(period);
@@ -94,7 +101,7 @@ export const TopStats: React.FC = React.memo(
             </li>
           </ul>
 
-          <StatsList list={topArtists?.items} />
+          <StatsList list={type === 'artists' ? topArtists?.items : topTracks?.items} />
         </div>
       </div>
     )
