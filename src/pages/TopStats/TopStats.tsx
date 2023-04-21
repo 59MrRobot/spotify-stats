@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { StatsList } from '../../components/StatsList';
 import { getTopArtists } from '../../redux/apiCalls';
 import './TopStats.scss';
+import cn from 'classnames';
 
 export const TopStats: React.FC = React.memo(
   () => {
@@ -12,13 +13,16 @@ export const TopStats: React.FC = React.memo(
     const dispatch = useDispatch();
     const [type, setType] = useState("");
     const [timePeriod, setTimePeriod] = useState("short_term");
+    const [shortSelected, setShortSelected] = useState(true);
+    const [mediumSelected, setMediumSelected] = useState(false);
+    const [longSelected, setLongSelected] = useState(false);
 
     useEffect(() => {
       setType(location.pathname.split('/')[2]);
     }, [location.pathname]);
 
     useEffect(() => {
-      getTopArtists(dispatch, `?time_range=${timePeriod}&limit=50`);
+      getTopArtists(dispatch, timePeriod);
     }, [dispatch, timePeriod]);
 
     const handleTimePeriod = (period: string) => {
@@ -32,19 +36,35 @@ export const TopStats: React.FC = React.memo(
 
           <ul className='top-stats__filter-list'>
             <li
-              className='top-stats__filter-item'
-              onClick={() => handleTimePeriod("short_term")}
+              className={cn(
+                'top-stats__filter-item',
+                {'selected': shortSelected}
+              )}
+              onClick={() => {
+                handleTimePeriod("short_term");
+                setShortSelected(true);
+                setMediumSelected(false);
+                setLongSelected(false);
+              }}
             >
               <NavLink
                 to="?timeRange=short_term"
-                className={({ isActive }) => isActive ? 'top-stats__filter-link active' : 'top-stats__filter-link'}
+                className="top-stats__filter-link"
               >
                 Last 4 Weeks
               </NavLink>
             </li>
             <li
-              className='top-stats__filter-item'
-              onClick={() => handleTimePeriod("medium_term")}
+              className={cn(
+                'top-stats__filter-item',
+                {'selected': mediumSelected}
+              )}
+              onClick={() => {
+                handleTimePeriod("medium_term");
+                setShortSelected(false);
+                setMediumSelected(true);
+                setLongSelected(false);
+              }}
             >
               <NavLink
                 to="?timeRange=medium_term"
@@ -54,8 +74,16 @@ export const TopStats: React.FC = React.memo(
               </NavLink>
             </li>
             <li
-              className='top-stats__filter-item'
-              onClick={() => handleTimePeriod("long_term")}
+              className={cn(
+                'top-stats__filter-item',
+                {'selected': longSelected}
+              )}
+              onClick={() => {
+                handleTimePeriod("long_term");
+                setShortSelected(false);
+                setMediumSelected(false);
+                setLongSelected(true);
+              }}
             >
               <NavLink
                 to="?timeRange=long_term"

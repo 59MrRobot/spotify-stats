@@ -5,8 +5,7 @@ import './styles/logo.scss';
 // import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { Login } from './pages/Login';
-import { Outlet } from 'react-router-dom'
-import { Home } from './pages/Home';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { getUser } from './redux/apiCalls';
@@ -15,7 +14,7 @@ import { getUser } from './redux/apiCalls';
 const App: React.FC = () => {
   const user: User = useSelector((state: any) => state.user.currentUser);
   const dispatch = useDispatch();
-
+  const location = useLocation();
 
   // const [search, setSearch] = useState("");
   // const [artists, setArtists] = useState<any>([]);
@@ -41,7 +40,7 @@ const App: React.FC = () => {
   // }
 
   return (
-    <div className="app">
+    <div className="app" style={{ height: location.pathname === '/' ? "100vh" : "100%"}}>
       <div className="app__wrapper">
         <Header />
 

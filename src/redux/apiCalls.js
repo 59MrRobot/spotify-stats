@@ -27,11 +27,11 @@ export const getUser = async (dispatch) => {
   }
 }
 
-export const getTopArtists = async (dispatch, params) => {
+export const getTopArtists = async (dispatch, timePeriod) => {
   dispatch(startTopArtistProcess());
 
   try {
-    const response = await userRequest.get(`/me/top/artists${params}`);
+    const response = await userRequest.get(`/me/top/artists?time_range=${timePeriod}&limit=50`);
 
     dispatch(getTopArtistSuccess(response.data));
   } catch (error) {
