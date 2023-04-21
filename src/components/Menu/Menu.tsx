@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../redux/apiCalls';
 import { updateShowMenu } from '../../redux/settingRedux';
 import { resetTopArtists } from '../../redux/topArtistRedux';
@@ -15,6 +15,7 @@ export const Menu: React.FC<Props> = React.memo(
   ({ visibility }) => {
     const user: User = useSelector((state: any) => state.user.currentUser);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
   
     return (
       <div className={`menu ${visibility ? 'show' : 'hide'}`}>
@@ -48,6 +49,7 @@ export const Menu: React.FC<Props> = React.memo(
                       window.localStorage.removeItem("token");
                       dispatch(resetTopArtists());
                       dispatch(updateShowMenu(false));
+                      navigate("/");
                     }}
                   >
                     Logout

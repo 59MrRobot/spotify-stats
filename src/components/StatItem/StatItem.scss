@@ -1,0 +1,36 @@
+.stat-item {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__info {
+    margin-top: 8px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__rank {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  &__name {
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  &__link {
+    color: #000;
+  }
+}
