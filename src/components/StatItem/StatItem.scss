@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 
   &--track {
     flex-direction: row;
@@ -14,8 +15,18 @@
     height: 100%;
 
     &--track {
-      width: 13%;
-      height: 13%;
+      width: 14%;
+      height: 14%;
+
+      @media (min-width: 468px) {
+        width: 8%;
+        height: 8%;
+      }
+
+      @media (min-width: 1024px) {
+        width: 5%;
+        height: 5%;
+      }
     }
   }
 
@@ -41,11 +52,28 @@
     font-size: 12px;
     font-weight: 400;
 
+    @media (min-width: 468px) {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
+
     &--track {
       flex: 0.5;
       font-size: 12px;
       margin-right: 8px;
       text-align: right;
+
+      @media (min-width: 468px) {
+        font-size: 14px;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -53,15 +81,32 @@
     font-size: 12px;
     font-weight: 300;
 
+    @media (min-width: 468px) {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
+    }
+
     &--track {
       font-size: 16px;
       font-weight: 600;
+
+      @media (min-width: 1024px) {
+        font-size: 18px;
+      }
     }
   }
 
   &__artist {
     font-size: 14px;
     font-weight: 300;
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 
   &__link {

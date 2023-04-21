@@ -5,6 +5,23 @@
   background-color: #fff;
   border-bottom: 1px solid grey;
 
+  &--big {
+    position: unset;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    display: none;
+
+    @media (min-width: 468px) {
+      display: contents;
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+  }
+
   &__list {
     padding-bottom: 16px;
     display: flex;
@@ -13,6 +30,11 @@
     // gap: 16px;
 
     list-style: none;
+
+    &--big {
+      flex-direction: row;
+      padding: 0;
+    }
   }
 
   &__item {

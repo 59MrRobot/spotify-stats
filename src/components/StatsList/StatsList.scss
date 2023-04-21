@@ -9,6 +9,14 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
 
+    @media (min-width: 468px) {
+      gap: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      gap: 24px;
+    }
+
     &--track {
       display: flex;
       flex-direction: column;

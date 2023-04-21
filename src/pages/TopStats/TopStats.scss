@@ -4,6 +4,10 @@
   &__wrapper {
     height: 100%;
     padding: 16px;
+
+    @media (min-width: 1024px) {
+      padding: 16px 24px;
+    }
   }
 
   &__title {
@@ -18,7 +22,9 @@
     display: flex;
     justify-content: center;
 
-    // border-bottom: 1px solid grey;
+    @media (min-width: 468px) {
+      margin-top: 24px;
+    }
   }
 
   &__filter-item {

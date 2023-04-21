@@ -24,6 +24,8 @@ export const Header: React.FC = React.memo(
             <p>Spotify Stats</p>
           </div>
 
+          {!isScreenSizeMobile && <Menu />}
+
           {isScreenSizeMobile && (
             <button
               className="header__menu"
@@ -34,7 +36,7 @@ export const Header: React.FC = React.memo(
           )}
         </div>
 
-        <Menu visibility={showMenu} />
+        {isScreenSizeMobile && <Menu />}
       </header>
     )
   }
