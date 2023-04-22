@@ -1,14 +1,17 @@
 .account {
   height: 100%;
   padding: 24px 0;
+
   &__wrapper {
     height: 100%;
     padding: 0 16px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    &--big {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__info {
@@ -20,6 +23,10 @@
   &__image {
     border-radius: 50%;
     width: 50%;
+
+    @media (min-width: 1024px) {
+      width: 10%;
+    }
   }
 
   &__title {
@@ -40,6 +47,10 @@
 
     border-radius: 8px;
     border: 1px solid grey;
+
+    @media (min-width: 1024px) {
+      width: 30%;
+    }
 
     &-content {
       padding: 8px 16px;

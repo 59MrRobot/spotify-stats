@@ -7,13 +7,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (min-width: 1024px) {
+      padding: 8px 32px;
+    }
   }
 
   &__logo {
+    width: max-content;
+
     display: flex;
     align-items: center;
     gap: 8px;
+
+    font-weight: 700;
     color: #000;
+
     cursor: pointer;
   }
 

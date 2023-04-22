@@ -118,7 +118,7 @@ export const Menu: React.FC = React.memo(
       )
       : (
         <div className='menu menu--big'>
-          <div className="menu__wrapper">
+          <div className="menu__wrapper menu__wrapper--big">
             <ul className="menu__list menu__list--big">
               <li className="menu__item">
                 <Link
@@ -139,83 +139,54 @@ export const Menu: React.FC = React.memo(
                   Top Tracks
                 </Link>
               </li>
+            </ul>
 
-              <li className="menu__item">
-                <div className="manage-account">
-                  <p className="manage-account__heading"
-                    onClick={() => setCollapse(prev => !prev)}
+            <div className="manage-account">
+              <p className="manage-account__heading"
+                onClick={() => setCollapse(prev => !prev)}
+              >
+                Manage Account <ArrowDropDownIcon />
+              </p>
+
+              {collapse && (
+                <div className="manage-account__content manage-account__content--big">
+                  <Link
+                    to="/account"
+                    style={{ textDecoration: "none", color: "#000"}}
+                    onClick={() => setCollapse(false)}
                   >
-                    Manage Account <ArrowDropDownIcon />
-                  </p>
+                    <AccountCircleIcon />
+                  </Link>
 
-                  {collapse && (
-                    <div className="manage-account__content manage-account__content--big">
-                      <Link
-                        to="/account"
-                        style={{ textDecoration: "none", color: "#000"}}
+                  {!user
+                    ? (
+                      <a
+                        href={login()}
+                        style={{ textDecoration: "none", color: "#000" }}
                         onClick={() => setCollapse(false)}
                       >
-                        <AccountCircleIcon />
-                      </Link>
-
-                      {!user
-                        ? (
-                          <a
-                            href={login()}
-                            style={{ textDecoration: "none", color: "#000" }}
-                            onClick={() => setCollapse(false)}
-                          >
-                            Login
-                          </a>
-                        )
-                        : (
-                          <span
-                            className='menu__logout'
-                            onClick={() => {
-                              dispatch(logout());
-                              window.localStorage.removeItem("token");
-                              dispatch(resetTopArtists());
-                              dispatch(updateShowMenu(false));
-                              navigate("/");
-                              setCollapse(false)
-                            }}
-                          >
-                            Logout
-                          </span>
-                        )
-                      }
-                    </div>
-                  )}
+                        Login
+                      </a>
+                    )
+                    : (
+                      <span
+                        className='menu__logout'
+                        onClick={() => {
+                          dispatch(logout());
+                          window.localStorage.removeItem("token");
+                          dispatch(resetTopArtists());
+                          dispatch(updateShowMenu(false));
+                          navigate("/");
+                          setCollapse(false)
+                        }}
+                      >
+                        Logout
+                      </span>
+                    )
+                  }
                 </div>
-              </li>
-
-              {/* <li className="menu__item">
-                {!user
-                  ? (
-                    <a
-                      href={login()}
-                      style={{ textDecoration: "none", color: "#000" }}
-                    >
-                      Login
-                    </a>
-                  )
-                  : (
-                    <span
-                      className='menu__logout'
-                      onClick={() => {
-                        dispatch(logout());
-                        window.localStorage.removeItem("token");
-                        dispatch(resetTopArtists());
-                        dispatch(updateShowMenu(false));
-                        navigate("/");
-                      }}
-                    >
-                      Logout
-                    </span>
-                  )
-                }
-              </li> */}
-            </ul>
+              )}
+            </div>
           </div>
         </div>
       )

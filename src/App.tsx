@@ -21,6 +21,18 @@ const App: React.FC = () => {
     getUser(dispatch);
   }, []);
 
+  useEffect(() => {
+    if (path === '/top/artists') {
+      document.title = 'Top Artists - Spotify Stats';
+    } else if (path === '/top/tracks') {
+      document.title = 'Top Tracks - Spotify Stats';
+    } else if (path === '/account') {
+      document.title = 'Account - Spotify Stats';
+    } else {
+      document.title = 'Spotify Stats';
+    }
+  }, [path]);
+
   return (
     <div className="app" style={{ height: (path === '/' || path === '/account') ? "100vh" : "100%"}}>
       <div className="app__wrapper">
