@@ -15,32 +15,14 @@ const App: React.FC = () => {
   const user: User = useSelector((state: any) => state.user.currentUser);
   const dispatch = useDispatch();
   const location = useLocation();
-
-  // const [search, setSearch] = useState("");
-  // const [artists, setArtists] = useState<any>([]);
+  const path = location.pathname;
 
   useEffect(() => {
     getUser(dispatch);
   }, []);
 
-  // const searchArtists = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-
-  //   const { data } = await axios.get("https://api.spotify.com/v1/search", {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     params: {
-  //       q: search,
-  //       type: "artist",
-  //     }
-  //   })
-  //
-  //   setArtists(data.artists.items);
-  // }
-
   return (
-    <div className="app" style={{ height: location.pathname === '/' ? "100vh" : "100%"}}>
+    <div className="app" style={{ height: (path === '/' || path === '/account') ? "100vh" : "100%"}}>
       <div className="app__wrapper">
         <Header />
 

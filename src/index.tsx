@@ -12,6 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Error } from './pages/Error';
 import { Home } from './pages/Home';
 import { TopStats } from './pages/TopStats';
+import { Account } from './pages/Account';
 
 const router = createHashRouter([
   {
@@ -30,6 +31,10 @@ const router = createHashRouter([
       {
         path: "/top/tracks",
         element: <TopStats />
+      },
+      {
+        path: "/account",
+        element: <Account />
       },
     ]
   },

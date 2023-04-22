@@ -55,6 +55,37 @@
   }
 }
 
+.manage-account {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__heading {
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    position: absolute;
+    top: 24px;
+
+    width: 60%;
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    background-color: #b5fffc;
+    border: 1px solid grey;
+
+    &--big {
+      width: 100%;
+    }
+  }
+}
+
 .hide {
   display: none;
 }

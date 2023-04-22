@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Menu } from '../Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateShowMenu } from '../../redux/settingRedux';
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = React.memo(
   () => {
@@ -14,15 +15,17 @@ export const Header: React.FC = React.memo(
     return (
       <header className="header">
         <div className="header__wrapper">
-          <div className="header__logo">
-            <img
-              src={`${process.env.PUBLIC_URL}/logo.png`}
-              alt="logo"
-              className="logo"
-            />
+          <Link to="/" style={{ textDecoration: "none"}}>
+            <div className="header__logo">
+              <img
+                src={`${process.env.PUBLIC_URL}/logo.png`}
+                alt="logo"
+                className="logo"
+              />
 
-            <p>Spotify Stats</p>
-          </div>
+              <p style={{ width: "max-contents"}}>Spotify Stats</p>
+            </div>
+          </Link>
 
           {!isScreenSizeMobile && <Menu />}
 

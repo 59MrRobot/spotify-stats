@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../redux/apiCalls';
@@ -6,6 +6,8 @@ import { updateShowMenu } from '../../redux/settingRedux';
 import { resetTopArtists } from '../../redux/topArtistRedux';
 import { logout } from '../../redux/userRedux';
 import './Menu.scss';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export const Menu: React.FC = React.memo(
   () => {
@@ -14,6 +16,7 @@ export const Menu: React.FC = React.memo(
     const navigate = useNavigate();
     const showMenu = useSelector((state: State) => state.setting.showMenu);
     const isScreenSizeMobile = window.matchMedia("(max-width: 480px)").matches;
+    const [collapse, setCollapse] = useState(false);
   
     return isScreenSizeMobile
       ? (
@@ -29,6 +32,7 @@ export const Menu: React.FC = React.memo(
                   Top Artists
                 </Link>
               </li>
+
               <li className="menu__item">
                 <Link
                   to="/top/tracks"
@@ -38,7 +42,51 @@ export const Menu: React.FC = React.memo(
                   Top Tracks
                 </Link>
               </li>
+
               <li className="menu__item">
+                <div className="manage-account">
+                  <p className="manage-account__heading"
+                    onClick={() => setCollapse(prev => !prev)}
+                  >
+                    Manage Account <ArrowDropDownIcon />
+                  </p>
+
+                  {collapse && (
+                    <div className="manage-account__content">
+                      <Link to="/account" style={{ textDecoration: "none", color: "#000"}}>
+                        <AccountCircleIcon />
+                      </Link>
+
+                      {!user
+                        ? (
+                          <a
+                            href={login()}
+                            style={{ textDecoration: "none", color: "#000" }}
+                          >
+                            Login
+                          </a>
+                        )
+                        : (
+                          <span
+                            className='menu__logout'
+                            onClick={() => {
+                              dispatch(logout());
+                              window.localStorage.removeItem("token");
+                              dispatch(resetTopArtists());
+                              dispatch(updateShowMenu(false));
+                              navigate("/");
+                            }}
+                          >
+                            Logout
+                          </span>
+                        )
+                      }
+                    </div>
+                  )}
+                </div>
+              </li>
+              
+              {/* <li className="menu__item">
                 {!user
                   ? (
                     <a
@@ -63,7 +111,7 @@ export const Menu: React.FC = React.memo(
                     </span>
                   )
                 }
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -81,6 +129,7 @@ export const Menu: React.FC = React.memo(
                   Top Artists
                 </Link>
               </li>
+
               <li className="menu__item">
                 <Link
                   to="/top/tracks"
@@ -90,7 +139,57 @@ export const Menu: React.FC = React.memo(
                   Top Tracks
                 </Link>
               </li>
+
               <li className="menu__item">
+                <div className="manage-account">
+                  <p className="manage-account__heading"
+                    onClick={() => setCollapse(prev => !prev)}
+                  >
+                    Manage Account <ArrowDropDownIcon />
+                  </p>
+
+                  {collapse && (
+                    <div className="manage-account__content manage-account__content--big">
+                      <Link
+                        to="/account"
+                        style={{ textDecoration: "none", color: "#000"}}
+                        onClick={() => setCollapse(false)}
+                      >
+                        <AccountCircleIcon />
+                      </Link>
+
+                      {!user
+                        ? (
+                          <a
+                            href={login()}
+                            style={{ textDecoration: "none", color: "#000" }}
+                            onClick={() => setCollapse(false)}
+                          >
+                            Login
+                          </a>
+                        )
+                        : (
+                          <span
+                            className='menu__logout'
+                            onClick={() => {
+                              dispatch(logout());
+                              window.localStorage.removeItem("token");
+                              dispatch(resetTopArtists());
+                              dispatch(updateShowMenu(false));
+                              navigate("/");
+                              setCollapse(false)
+                            }}
+                          >
+                            Logout
+                          </span>
+                        )
+                      }
+                    </div>
+                  )}
+                </div>
+              </li>
+
+              {/* <li className="menu__item">
                 {!user
                   ? (
                     <a
@@ -115,7 +214,7 @@ export const Menu: React.FC = React.memo(
                     </span>
                   )
                 }
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
