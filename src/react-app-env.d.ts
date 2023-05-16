@@ -132,6 +132,24 @@ interface Track {
   };
 }
 
+interface RecentItem {
+  context: {
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    type: string;
+    uri: string;
+  };
+  played_at: string;
+  track: {
+    artists: {
+      name: string;
+    }[];
+    name: string;
+  }
+}
+
 interface State {
   user: {
     currentUser: User;
@@ -151,4 +169,9 @@ interface State {
     isFetching: boolean;
     error: boolean;
   };
+  recentlyPlayed: {
+    recentlyPlayed: RecentItem[];
+    isFetching: boolean;
+    error: boolean;
+  }
 }

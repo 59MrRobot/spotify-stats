@@ -3,6 +3,7 @@ import userReducer from './userRedux';
 import settingReducer from './settingRedux';
 import topArtistReducer from './topArtistRedux';
 import topTrackReducer from './topTrackRedux';
+import recentlyPlayedReducer from './recentlyPlayedRedux';
 import {
   persistStore,
   persistReducer,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   setting: settingReducer,
   topArtists: topArtistReducer,
   topTracks: topTrackReducer,
+  recentlyPlayed: recentlyPlayedReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

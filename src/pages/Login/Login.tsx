@@ -4,6 +4,7 @@ import './Login.scss';
 
 export const Login: React.FC = React.memo(
   () => {
+    const link = login();
     return (
       <div className="login">
         <div className="login__wrapper">
@@ -12,7 +13,7 @@ export const Login: React.FC = React.memo(
           </h2>
 
           <a
-            href={login()}
+            href={link}
             className="button login__button"
             style={{ textDecoration: "none"}}
           >

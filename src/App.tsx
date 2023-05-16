@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import './App.scss';
 import './styles/button.scss';
 import './styles/logo.scss';
-// import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { Login } from './pages/Login';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -19,7 +18,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     getUser(dispatch);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (path === '/top/artists') {
@@ -34,7 +33,7 @@ const App: React.FC = () => {
   }, [path]);
 
   return (
-    <div className="app" style={{ height: (path === '/' || path === '/account') ? "100vh" : "100%"}}>
+    <div className="app">
       <div className="app__wrapper">
         <Header />
 

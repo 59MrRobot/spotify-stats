@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../redux/apiCalls';
+import React from 'react';
 import './Home.scss';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
 export const Home: React.FC = React.memo(
   () => {
-    const user: User = useSelector((state: any) => state.user.currentUser);
-
     return (
       <div className="home">
         <div className="home__wrapper">

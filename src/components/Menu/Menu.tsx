@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../redux/apiCalls';
 import { updateShowMenu } from '../../redux/settingRedux';
 import { resetTopArtists } from '../../redux/topArtistRedux';
+import { resetTopTracks } from '../../redux/topTrackRedux';
 import { logout } from '../../redux/userRedux';
 import './Menu.scss';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -40,6 +41,16 @@ export const Menu: React.FC = React.memo(
                   onClick={() => dispatch(updateShowMenu(false))}
                 >
                   Top Tracks
+                </Link>
+              </li>
+
+              <li className="menu__item">
+                <Link
+                  to="/recently-played"
+                  style={{ textDecoration: "none", color: "unset" }}
+                  onClick={() => dispatch(updateShowMenu(false))}
+                >
+                  Recently Played
                 </Link>
               </li>
 
@@ -139,6 +150,16 @@ export const Menu: React.FC = React.memo(
                   Top Tracks
                 </Link>
               </li>
+
+              <li className="menu__item">
+                <Link
+                  to="/recently-played"
+                  style={{ textDecoration: "none", color: "unset" }}
+                  onClick={() => dispatch(updateShowMenu(false))}
+                >
+                  Recently Played
+                </Link>
+              </li>
             </ul>
 
             <div className="manage-account">
@@ -175,9 +196,10 @@ export const Menu: React.FC = React.memo(
                           dispatch(logout());
                           window.localStorage.removeItem("token");
                           dispatch(resetTopArtists());
+                          dispatch(resetTopTracks());
                           dispatch(updateShowMenu(false));
                           navigate("/");
-                          setCollapse(false)
+                          setCollapse(false);
                         }}
                       >
                         Logout

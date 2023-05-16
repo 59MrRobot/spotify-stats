@@ -13,6 +13,7 @@ import { Error } from './pages/Error';
 import { Home } from './pages/Home';
 import { TopStats } from './pages/TopStats';
 import { Account } from './pages/Account';
+import { RecentlyPlayed } from './pages/RecentlyPlayed';
 
 const router = createHashRouter([
   {
@@ -35,6 +36,10 @@ const router = createHashRouter([
       {
         path: "/account",
         element: <Account />
+      },
+      {
+        path: "/recently-played",
+        element: <RecentlyPlayed />
       },
     ]
   },
