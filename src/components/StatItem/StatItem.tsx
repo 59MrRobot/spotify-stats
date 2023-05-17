@@ -66,7 +66,7 @@ export const StatItem: React.FC<Props> = React.memo(
               {item.name}
             </p>
             <p className='stat-item__artist'>
-              {item.album!.artists[0].name}
+              {item.album?.artists[0].name}
             </p>
           </div>
 

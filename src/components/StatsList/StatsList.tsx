@@ -12,17 +12,21 @@ export const StatsList: React.FC<Props> = React.memo(
   ({ list }) => {
     const location = useLocation();
     
-    return (
-      <div className='stats-list'>
-        <div className={cn(
-        'stats-list__wrapper',
-        {'stats-list__wrapper--track': location.pathname.split('/')[2] === 'tracks'}
-      )}>
-          {list?.map((item, index) => (
-            <StatItem item={item} index={index} key={item.id}/>
-          ))}
+    return list?.length > 0 
+      ? (
+        <div className='stats-list'>
+          <div className={cn(
+          'stats-list__wrapper',
+          {'stats-list__wrapper--track': location.pathname.split('/')[2] === 'tracks'}
+        )}>
+            {list?.map((item, index) => (
+              <StatItem item={item} index={index} key={item.id}/>
+            ))}
+          </div>
         </div>
-      </div>
-    )
+      )
+      : (
+        <p>loading</p>
+      )
   }
 );
