@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/spotify-stats/static/css/main.5319740f.css",
-    "main.js": "/spotify-stats/static/js/main.b9e0d4b5.js",
+    "main.js": "/spotify-stats/static/js/main.a4579ee2.js",
     "index.html": "/spotify-stats/index.html"
   },
   "entrypoints": [
     "static/css/main.5319740f.css",
-    "static/js/main.b9e0d4b5.js"
+    "static/js/main.a4579ee2.js"
   ]
 }
